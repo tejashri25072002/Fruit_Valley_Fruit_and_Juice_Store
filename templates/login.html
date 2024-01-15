@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <title>Login </title>
+</head>
+
+<body class="login-block">
+    <!-- Section: Design Block -->
+    <section class=" text-center text-lg-start">
+        <style>
+            .rounded-t-5 {
+                border-top-left-radius: 0.5rem;
+                border-top-right-radius: 0.5rem;
+            }
+
+            @media (min-width: 992px) {
+                .rounded-tr-lg-0 {
+                    border-top-right-radius: 0;
+                }
+
+                .rounded-bl-lg-5 {
+                    border-bottom-left-radius: 0.5rem;
+                }
+            }
+        </style>
+        <div class="container mt-5">
+            <div class="card mb-3">
+                <div class="row g-0 d-flex align-items-center">
+                    <div class="col-6 d-none d-lg-flex">
+                        <img src="{% static 'assets/img/loginimg.jpg' %}" alt="Fresh Fruits"
+                            class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+                    </div>
+                    <div class="col-6">
+                        <div class="card-body py-3 px-md-5">
+                            <a href="index.html" class="navbar-brand border" style="border-radius: 50%;"><img src="{% static 'assets/img/logo.jpg' %}" alt="" height="100px" width="150px"></a>
+                            <h1 class="font-monospace">LOGIN</h1>
+                            <!--Error msg start-->
+                            {% if errmsg %}
+                            <div class="alert alert-danger">
+                                {{errmsg}}
+                            </div>
+                            {% endif %}
+                            <!--Error msg end-->
+                            <form class="login-form" action="/login" method="POST">
+                                {% csrf_token %}
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form2Example1">Email address</label>
+                                    <input type="email" name="uname" id="form2Example1" class="form-control" />
+                                </div>
+
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form2Example2">Password</label>
+                                    <input type="password" name="upass" id="form2Example2" class="form-control" />
+                                </div>
+
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                                <br>
+                                Not a User<a href="/register" style="text-decoration: none;">&nbsp;&nbsp;Register</a>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section: Design Block -->
+
+</body>
+
+</html>

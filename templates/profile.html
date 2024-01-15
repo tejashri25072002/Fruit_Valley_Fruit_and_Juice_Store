@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<!--Main section start-->
+
+{% block main-content %}
+
+<style>
+    .pass {
+        background-image: url('https://images.pexels.com/photos/1410140/pexels-photo-1410140.jpeg?auto=compress&cs=tinysrgb&w=600');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        opacity: 0.9;
+        height: 130vh;
+    }
+</style>
+<div class="row" >
+    <a href="/home"><h2><i class="ms-4 bi bi-arrow-left-circle"></i></h2></a>
+    {% for x in data %}
+    {% if forloop.counter == 1 %}
+    <form action="/updateprofile/{{x.id}}" method="POST" class="pass">
+        {% csrf_token %}
+        <div class="col-md-5 shadow-lg p-3 mx-auto mt-5  ">
+            {% if errmsg %}
+            <div class="alert alert-danger">
+
+                {{errmsg}}
+            </div>
+            {% endif %}
+            {% if success %}
+            <div class="alert alert-success">
+
+                {{success}}
+            </div>
+            {% endif %}
+            <h5 class="bg-light text-primary p-2 font-monospace" style=" text-align: center;">Customer details</h5>
+
+
+            <div class="mb-3">
+                <b><label for="input1" class="form-label">Username :-</label></b>
+                <input type="text" class="form-control" name="uname" id="input2" placeholder="Enter Username"
+                    value="{{x.username}}" style=" border: 1px solid; " readonly>
+            </div>
+
+            <!-- <div class="mb-3">
+                    <b><label for="input2" class="form-label">Email :-</label></b>
+                    <input type="email" class="form-control" name="email" id="input2" placeholder="Enter Email"
+                        value="{{x.email}}" style=" border: 1px solid;" readonly>
+                </div> -->
+
+            <div class="mb-3">
+                <b><label for="input1" class="form-label">First Name :-</label></b>
+                <input type="text" class="form-control" name="firstname" id="input1" placeholder="Enter First Name"
+                    value="{{x.first_name}}" style=" border: 1px solid;"readonly>
+            </div>
+
+            <div class="mb-3">
+                <b><label for="input1" class="form-label">Last Name :-</label></b>
+                <input type="text" class="form-control" name="lastname" id="input1" placeholder="Enter Last Name"
+                    value="{{x.last_name}}" style=" border: 1px solid;">
+            </div>
+            {% endif %}
+            {% endfor %}
+
+            <div class="mb-3">
+                <b><label for="input1" class="form-label">Mobile No:-</label></b>
+                <input type="number" class="form-control" name="mobile" id="input1" placeholder="Enter Mobile Number"
+                    value="{{x.mobile}}" style=" border: 1px solid;">
+            </div>
+
+
+            <div class="mb-3">
+                <b><label for="input1" class="form-label">Address :</label></b>
+                <textarea name="address" id="input1" cols="30" rows="4" class="form-control" placeholder="Enter Address"
+                    style=" border: 1px solid;" value="{{x.address}}">{{x.address}}</textarea>
+                <br>
+            </div>
+            <div style="text-align: center;">
+                <button class="btn btn-success ps-5 pe-5 ">Update profile</button>
+            </div>
+
+        </div>
+    </form>
+
+
+    <!-- </form> -->
+</div>
+
+
+
+{% endblock main-content %}
+
+<!--Main section end-->

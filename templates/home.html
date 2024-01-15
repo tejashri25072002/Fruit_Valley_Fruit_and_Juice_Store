@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+ <!--Banner section start-->
+<!--Success message start-->
+{% if success %}
+<div class="alert alert-info" role="alert" style="margin-left: 90px; margin-right: 90px;">
+    <h4 class="alert-heading">Thank You..!</h4>
+    <p>{{emailsend}}
+  </div>
+{% endif %}
+<!--Success message end-->
+ {% block banner %}
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'assets/img/b1.jpg' %}" class="d-block w-100" alt="..." height="700">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'assets/img/b2.jpg' %}" class="d-block w-100" alt="..." height="700">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'assets/img/b3.jpg' %}" class="d-block w-100" alt="..." height="700">
+    </div>
+  </div>
+</div>
+ {% endblock banner %}
+<!--banner section end-->
+
+
+{% block main-content %}
+
+<hr>
+<h1 class="text-center font-monospace bg-warning">Our Products</h1>
+<hr class="mt-2 mb-5">
+<div class="container-fluid mx-5">
+<div class="row mt-2">
+  {% for x in fruits %}
+    <div class="col-2 ms-5 me-4 mb-4" id="thumbnail">
+      <div class="card h-100" style="width: 110%; height: 90%; margin-left: 10px;">
+        <img src="{{x.fimage.url}}" class="card-img-top" alt="..." height="200px">
+        <div class="card-body" style="background-color: azure;">
+          <h5 class="card-title font-monospace">{{x.name}}</h5>
+          {% if x.cat == 1 %}
+          <p class="card-text">Fleshy Fruit</p>
+          {% else %}  
+          <p class="card-text">Dry Fruit</p>
+          {% endif %}
+          <p class="card-text"><b>Price:</b> {{x.price}} Rs.<br><br>
+          <a href="/fruitdetails/{{x.id}}" class="btn btn-info">See &amp; Buy</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock main-content %}
+<!--Main section start-->
+{% block gallery %}
+<hr>
+     <h1 class="fw-light text-center text-center font-monospace bg-warning" id="gallery">Fruit Gallery</h1>
+   
+     <hr class="mt-2 mb-5">
+   
+     <div class="row text-center text-lg-start">
+   
+       <div class="col-lg-3 col-md-4 col-6">
+         <a href="#" class="d-block mb-4 h-100">
+           <img class="img-fluid img-thumbnail" src="{% static 'assets/img/fruite-item-1.jpg' %}" alt="" style="border-radius: 60%;">
+         </a>
+       </div>
+       <div class="col-lg-3 col-md-4 col-6">
+         <a href="#" class="d-block mb-4 h-100">
+           <img class="img-fluid img-thumbnail" src="{% static 'assets/img/fruite-item-2.jpg' %}" alt=""style="border-radius: 60%;">
+         </a>
+       </div>
+       <div class="col-lg-3 col-md-4 col-6">
+         <a href="#" class="d-block mb-4 h-100">
+           <img class="img-fluid img-thumbnail" src="{% static 'assets/img/fruite-item-3.jpg' %}" alt="" style="border-radius: 60%;">
+         </a>
+       </div>
+       <div class="col-lg-3 col-md-4 col-6">
+         <a href="#" class="d-block mb-4 h-100">
+           <img class="img-fluid img-thumbnail" src="{% static 'assets/img/fruite-item-4.jpg' %}" alt="" style="border-radius: 60%;">
+         </a>
+       </div>
+       <div class="col-lg-3 col-md-4 col-6">
+         <a href="#" class="d-block mb-4 h-100">
+           <img class="img-fluid img-thumbnail" src="{% static 'assets/img/fruite-item-5.jpg' %}" alt="" style="border-radius: 60%;">
+         </a>
+       </div>
+       <div class="col-lg-3 col-md-4 col-6">
+         <a href="#" class="d-block mb-4 h-100">
+           <img class="img-fluid img-thumbnail" src="{% static 'assets/img/fruite-item-6.jpg' %}" alt=""style="border-radius: 60%;">
+         </a>
+       </div>
+       <div class="col-lg-3 col-md-4 col-6">
+         <a href="#" class="d-block mb-4 h-50">
+           <img class="img-fluid img-thumbnail" src="{% static 'assets/img/featur-1.jpg' %}" alt="" style="border-radius: 60%;">
+         </a>
+       </div>
+       <div class="col-lg-3 col-md-4 col-6">
+         <a href="#" class="d-block mb-4 h-70">
+           <img class="img-fluid img-thumbnail" src="{% static 'assets/img/featur-2.jpg' %}" alt="" style="border-radius: 60%;">
+         </a>
+       </div>
+     </div>
+   
+{% endblock gallery %}
+ <!--Main section end-->

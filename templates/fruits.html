@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block main-content %}
+<hr>
+<a href="/home"><h2><i class="ms-4 bi bi-arrow-left-circle"></i></h2></a>
+<h1 class="text-center font-monospace bg-warning">Our Products</h1>
+<hr class="mt-2 mb-5">
+<div class="container-fluid mx-5">
+<div class="row mt-2">
+  {% for x in fruits %}
+  <div class="col-2 ms-5 me-4 mb-4" id="thumbnail">
+    <div class="card h-100" style="width: 110%; height: 90%; margin-left: 10px;">
+        <img src="{{x.fimage.url}}" class="card-img-top" alt="..." height="200px">
+        <div class="card-body" style="background-color: azure;">
+          <h5 class="card-title font-monospace">{{x.name}}</h5>
+          {% if x.cat == 1 %}
+          <p class="card-text">Fleshy Fruit</p>
+          {% else %}
+          <p class="card-text">Dry Fruit</p>
+          {% endif %}
+          <p class="card-text"><b>Price:</b> {{x.price}} Rs.</p>
+          <a href="/fruitdetails/{{x.id}}" class="btn btn-info">See &amp; Buy</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock main-content %}

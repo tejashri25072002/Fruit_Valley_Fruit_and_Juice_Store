@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block main-content %}
+<hr>
+<a href="/home"><h2><i class="ms-4 bi bi-arrow-left-circle"></i></h2></a>
+<h1 class="text-center font-monospace bg-warning">Our Products</h1>
+<hr class="mt-2 mb-5">
+<div class="container-fluid mx-5">
+<div class="row mt-2">
+  {% for x in juices %}
+  <div class="col-2 ms-5 me-4 mb-4" id="thumbnail">
+    <div class="card h-100" style="width: 110%; height: 90%; margin-left: 10px;">
+        <img src="{{x.jimage.url}}" class="card-img-top" alt="..." height="200px">
+        <div class="card-body" style="background-color: azure;">
+          <h5 class="card-title font-monospace">{{x.name}}</h5>
+          {% if x.juicecat == 1 %}
+          <p class="card-text">Fresh Fruit Juice</p>
+          {% elif x.juicecat == 2 %}
+          <p class="card-text">FC Juice(From Concentrate)</p>
+          {% elif x.juicecat == 3 %}
+          <p class="card-text">NFC Juice(Non From Concentrate)</p>
+          {% elif x.juicecat == 4 %}
+          <p class="card-text">Cold Press Juice</p>
+          {% else %}
+          <p class="card-text">Fruity Drinks</p>
+          {% endif %}
+          <p class="card-text"><b>Price:</b> {{x.price}} Rs.</p>
+          <a href="/juicedetails/{{x.id}}" class="btn btn-info">See &amp; Buy</a>
+        </div>  
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock main-content %}

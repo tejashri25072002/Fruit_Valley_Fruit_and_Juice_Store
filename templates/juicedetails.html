@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block main-content %}
+<a href="/juices"><h2><i class="ms-4 bi bi-arrow-left-circle"></i></h2></a>
+<!--Success message start-->
+{% if success %}
+<div class="alert alert-info" role="alert" style="margin-left: 90px; margin-right: 90px;">
+    <h4 class="alert-heading">Well done!</h4>
+    <p>{{success}}
+  </div>
+{% endif %}
+<!--Success message end-->
+
+<!--Error message Start-->
+{% if errmsg %}
+<div class="alert alert-secondary" role="alert" style="margin-left: 90px; margin-right: 90px;">
+    <h4 class="alert-heading">Ohhh..!</h4>
+    <p>{{errmsg}}
+  </div>
+{% endif %}
+<!--Error message end-->
+
+<div class="row mt-2 mx-auto">
+    {% for x in juices %}
+    <div class="col-md-3 mt-5 me-2 ms-5">
+        <img src="{{x.jimage.url}}" alt="" height="200px">
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+    <div class="col-md-7 mt-3" style="background-color: azure;">
+            <h5 class="font-monospace mt-2">{{x.name}}</h5>
+            {% if x.juicecat == 1 %}
+          <p class="card-text">Fresh Fruit Juice</p>
+          {% elif x.juicecat == 2 %}
+          <p class="card-text">FC Juice(From Concentrate)</p>
+          {% elif x.juicecat == 3 %}
+          <p class="card-text">NFC Juice(Non From Concentrate)</p>
+          {% elif x.juicecat == 4 %}
+          <p class="card-text">Cold Press Juice</p>
+          {% else %}
+          <p class="card-text">Fruity Drinks</p>
+          {% endif %}
+            <p class="card-text"><b>Price:</b> {{x.price}} Rs.</p>
+            <p class="card-text"><b>Health Benefit:</b> {{x.benefit}}</p><br>
+            <a href="/juiceaddcart/{{x.id}}" class="btn text-dark btn-info"><i class="bi bi-cart-plus-fill text-success"></i>&nbsp;&nbsp;Add to Cart</a>&nbsp;&nbsp;&nbsp;
+            <a href="/juicecart" class="btn text-dark btn-info">View Cart</a>&nbsp;&nbsp;&nbsp;
+            <a href="/juices"  class="btn text-dark btn-info">Go to Shop</a><br><br>
+    </div>
+
+</div><br>
+{% endfor %}
+
+
+{% endblock main-content %}
